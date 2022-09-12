@@ -12,7 +12,7 @@ CREATE TABLE student (
     
 CREATE TABLE class (
     `ID` INT PRIMARY KEY,
-    `Name` VARCHAR(45) NULL
+    `Name` VARCHAR(45)
 );
 
 CREATE TABLE teacher (
