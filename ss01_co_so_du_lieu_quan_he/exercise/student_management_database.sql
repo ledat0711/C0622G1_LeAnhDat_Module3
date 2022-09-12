@@ -23,4 +23,4 @@ CREATE TABLE teacher (
 );
 
 INSERT INTO student(id, name, age, country)
-VALUES (001, "Lê Anh Đạt", "28","Việt Nam");
+VALUES (001,"Lê Anh Đạt",28,"Việt Nam");
