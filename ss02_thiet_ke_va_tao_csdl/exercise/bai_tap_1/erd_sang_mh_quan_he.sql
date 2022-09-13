@@ -38,12 +38,15 @@ CREATE TABLE chi_tiet_phieu_nhap(
 );
 
 CREATE TABLE don_dat_hang(
-	ma_so_dat_hang INT PRIMARY KEY,
+	so_don_dat_hang INT PRIMARY KEY,
     ngay_dat_hang DATE
 );
 
 CREATE TABLE chi_tiet_don_dat_hang(
-	so_don_hang INT,
+	so_don_dat_hang INT,
     ma_vat_tu INT,
-    
+    PRIMARY KEY (so_don_dat_hang,ma_vat_tu),
+    FOREIGN KEY (so_don_dat_hang) REFERENCES don_dat_hang (so_don_dat_hang),
+    FOREIGN KEY (ma_vat_tu) REFERENCES vat_tu (ma_vat_tu)
 );
+
