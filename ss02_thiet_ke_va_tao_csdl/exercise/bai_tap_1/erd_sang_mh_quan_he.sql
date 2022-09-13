@@ -49,17 +49,21 @@ CREATE TABLE chi_tiet_don_dat_hang(
     FOREIGN KEY (so_don_dat_hang) REFERENCES don_dat_hang (so_don_dat_hang),
     FOREIGN KEY (ma_vat_tu) REFERENCES vat_tu (ma_vat_tu)
 );
-
+CREATE TABLE so_dien_thoai(
+	so_dien_thoai VARCHAR(12) PRIMARY KEY
+);
 CREATE TABLE nha_cung_cap(
 	ma_so_nha_cung_cap INT PRIMARY KEY,
 	ten_nha_cung_cap VARCHAR(55),
-    dia_chi VARCHAR(55)
+    dia_chi VARCHAR(55),
+	so_dien_thoai VARCHAR(12),
+    FOREIGN KEY (so_dien_thoai) REFERENCES so_dien_thoai(so_dien_thoai)
 );
 
 CREATE TABLE cung_cap(
 	so_don_dat_hang INT,
     ma_so_nha_cung_cap INT,
     PRIMARY KEY (so_don_dat_hang,ma_so_nha_cung_cap),
-    FOREIGN KEY (so_don_dat_hang) REFERENCES chi_tiet_don_dat_hang (so_don_dat_hang),
+    FOREIGN KEY (so_don_dat_hang) REFERENCES don_dat_hang (so_don_dat_hang),
     FOREIGN KEY (ma_so_nha_cung_cap) REFERENCES nha_cung_cap (ma_so_nha_cung_cap)
 );
