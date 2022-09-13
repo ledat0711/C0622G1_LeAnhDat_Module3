@@ -1,0 +1,37 @@
+DROP DATABASE IF EXISTS quan_ly_ban_hang;
+CREATE DATABASE quan_ly_ban_hang;
+USE quan_ly_ban_hang;
+
+CREATE TABLE Customer(
+cID INT PRIMARY KEY,
+cName VARCHAR(55) NOT NULL,
+cAge INT
+);
+
+CREATE TABLE `Order`(
+oID INT PRIMARY KEY,
+cID INT NOT NULL,
+oDate DATE NOT NULL,
+oTotalPrice DOUBLE NOT NULL,
+FOREIGN KEY (cID) REFERENCES Customer(cID)
+);
+
+CREATE TABLE Product(
+pID INT PRIMARY KEY,
+pName VARCHAR(55) NOT NULL,
+pPrice DOUBLE NOT NULL
+);
+
+CREATE TABLE OrderDetail(
+oID INT,
+pID INT,
+odQTY INT,
+PRIMARY KEY(oID,pID),
+FOREIGN KEY(oID) REFERENCES `Order`(oID),
+FOREIGN KEY(pID) REFERENCES Product(pID)
+);
+
+INSERT INTO Customer(cID,cName,cAge)
+VALUES (1,"Nguyen A", 25);
+
+SELECT * FROM Customer;
