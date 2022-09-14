@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS erd_sang_mh_quan_he;
-CREATE DATABASE erd_sang_mh_quan_he;
-USE erd_sang_mh_quan_he;
+DROP DATABASE IF EXISTS quan_ly_nhap_xuat_hang;
+CREATE DATABASE quan_ly_nhap_xuat_hang;
+USE quan_ly_nhap_xuat_hang;
 
 CREATE TABLE phieu_xuat(
 	so_phieu_xuat INT PRIMARY KEY,
@@ -10,6 +10,18 @@ CREATE TABLE phieu_xuat(
 CREATE TABLE vat_tu(
 	ma_vat_tu INT PRIMARY KEY,
     ten_vat_tu VARCHAR(55)
+);
+
+CREATE TABLE nha_cung_cap(
+	ma_so_nha_cung_cap INT PRIMARY KEY,
+	ten_nha_cung_cap VARCHAR(55),
+    dia_chi VARCHAR(55)
+);
+
+CREATE TABLE so_dien_thoai(
+	so_dien_thoai VARCHAR(12) PRIMARY KEY,
+    ma_so_nha_cung_cap INT,
+    FOREIGN KEY (ma_so_nha_cung_cap) REFERENCES nha_cung_cap(ma_so_nha_cung_cap)
 );
 
 CREATE TABLE chi_tiet_phieu_xuat(
@@ -39,8 +51,11 @@ CREATE TABLE chi_tiet_phieu_nhap(
 
 CREATE TABLE don_dat_hang(
 	so_don_dat_hang INT PRIMARY KEY,
-    ngay_dat_hang DATE
+	ma_so_nha_cung_cap INT,
+    ngay_dat_hang DATETIME,
+    FOREIGN KEY (ma_so_nha_cung_cap) REFERENCES nha_cung_cap(ma_so_nha_cung_cap)
 );
+
 
 CREATE TABLE chi_tiet_don_dat_hang(
 	so_don_dat_hang INT,
@@ -49,21 +64,4 @@ CREATE TABLE chi_tiet_don_dat_hang(
     FOREIGN KEY (so_don_dat_hang) REFERENCES don_dat_hang (so_don_dat_hang),
     FOREIGN KEY (ma_vat_tu) REFERENCES vat_tu (ma_vat_tu)
 );
-CREATE TABLE so_dien_thoai(
-	so_dien_thoai VARCHAR(12) PRIMARY KEY
-);
-CREATE TABLE nha_cung_cap(
-	ma_so_nha_cung_cap INT PRIMARY KEY,
-	ten_nha_cung_cap VARCHAR(55),
-    dia_chi VARCHAR(55),
-	so_dien_thoai VARCHAR(12),
-    FOREIGN KEY (so_dien_thoai) REFERENCES so_dien_thoai(so_dien_thoai)
-);
 
-CREATE TABLE cung_cap(
-	so_don_dat_hang INT,
-    ma_so_nha_cung_cap INT,
-    PRIMARY KEY (so_don_dat_hang,ma_so_nha_cung_cap),
-    FOREIGN KEY (so_don_dat_hang) REFERENCES don_dat_hang (so_don_dat_hang),
-    FOREIGN KEY (ma_so_nha_cung_cap) REFERENCES nha_cung_cap (ma_so_nha_cung_cap)
-);
