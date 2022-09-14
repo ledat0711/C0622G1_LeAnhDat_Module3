@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS furama_case_study;
-CREATE DATABASE furama_case_study;
-USE furama_case_study;
+DROP DATABASE IF EXISTS furama_database;
+CREATE DATABASE furama_database;
+USE furama_database;
 
 CREATE TABLE vi_tri(
 	ma_vi_tri INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -168,12 +168,12 @@ VALUES  (1, 'year'),
  (3, 'Room');
  
 INSERT INTO dich_vu(ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, so_nguoi_toi_da, ma_kieu_thue, ma_loai_dich_vu, tieu_chuan_phong, mo_ta_tien_nghi_khac, dien_tich_ho_boi, so_tang, dich_vu_mien_phi_di_kem)
-VALUES ('1', 'Villa Beach Front', 25000,1000000, 10, 3, '1', 'vip', 'Có hồ bơi', '500', '4',null ),
-('2', 'House Princess 01',14000,5000000, 7, 2, '2', 'vip', 'Có thêm bếp nướng', null, '3', null),
-('3', 'Room Twin 01', 5000, 1000000, 2, 4, '3', 'normal', 'Có tivi',null,null, '1 Xe máy, 1 Xe đạp'),
-('4', 'Villa No Beach Front', 22000, 9000000, 8, 3, '1', 'normal', 'Có hồ bơi', '300', '3',null ),
-('5', 'House Princess 02', 10000, 4000000, 5, 3, '2', 'normal', 'Có thêm bếp nướng',null,'2', null),
-('6', 'Room Twin 02', 3000, 900000,2,4, '3', 'normal', 'Có tivi',null , null, '1 Xe máy');
+VALUES ('1', 'Villa Beach Front', 25000,1000000, 10, 3, 1, 'vip', 'Có hồ bơi', '500', '4',null ),
+('2', 'House Princess 01',14000,5000000, 7, 2, 2, 'vip', 'Có thêm bếp nướng', null, '3', null),
+('3', 'Room Twin 01', 5000, 1000000, 2, 4, 3, 'normal', 'Có tivi',null,null, '1 Xe máy, 1 Xe đạp'),
+('4', 'Villa No Beach Front', 22000, 9000000, 8, 3, 1, 'normal', 'Có hồ bơi', '300', '3',null ),
+('5', 'House Princess 02', 10000, 4000000, 5, 3, 2, 'normal', 'Có thêm bếp nướng',null,'2', null),
+('6', 'Room Twin 02', 3000, 900000,2,4,3, 'normal', 'Có tivi',null , null, '1 Xe máy');
 
 INSERT INTO dich_vu_di_kem (ma_dich_vu_di_kem, ten_dich_vu_di_kem, gia, don_vi, trang_thai)
 VALUES (1, 'Karaoke', '10000', 'giờ', 'tiện nghi, hiện tại'),
@@ -207,6 +207,3 @@ VALUES (1,2,4,5),
 (6,1,3,1),
 (7,1,2,2),
 (8,12,2,2);
-
-SELECT * FROM nhan_vien
-WHERE char_length(ho_ten) <= 15 AND ho_ten REGEXP '^[HKT].*$';
