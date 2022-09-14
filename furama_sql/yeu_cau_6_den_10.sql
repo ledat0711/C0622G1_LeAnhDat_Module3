@@ -29,7 +29,6 @@ ORDER BY dv.dien_tich DESC;
 -- 7.	Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu 
 -- của tất cả các loại dịch vụ đã từng được khách hàng đặt phòng trong năm 2020 
 -- nhưng chưa từng được khách hàng đặt phòng trong năm 2021.
-
 SELECT 
     dv.ma_dich_vu,
     dv.ten_dich_vu,
@@ -56,7 +55,6 @@ GROUP BY hd.ma_dich_vu;
 
 -- 8. Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
 -- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
-
 -- Cách 1:
 SELECT 
     ho_ten
@@ -82,7 +80,6 @@ FROM
     
 -- 9. Thực hiện thống kê doanh thu theo tháng, 
 -- nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
-
 SELECT 
     MONTH(ngay_lam_hop_dong) AS thang,
     COUNT(ma_khach_hang) AS so_luong_khach_dat_phong
