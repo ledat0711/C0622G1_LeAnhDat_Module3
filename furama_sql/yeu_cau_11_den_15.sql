@@ -67,3 +67,21 @@ LEFT JOIN loai_dich_vu ldv
 GROUP BY hdct.ma_dich_vu_di_kem
 HAVING so_lan_su_dung = 1
 ORDER BY hd.ma_hop_dong;
+
+-- 15. Hiển thi thông tin của tất cả nhân viên bao gồm 
+-- ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, so_dien_thoai, dia_chi 
+-- mới chỉ lập được tối đa 3 hợp đồng từ năm 2020 đến 2021.
+SELECT 
+    nv.ma_nhan_vien,
+    nv.ho_ten,
+    td.ten_trinh_do,
+    bp.ten_bo_phan,
+    nv.so_dien_thoai,
+    nv.dia_chi
+FROM nhan_vien nv 
+JOIN trinh_do td ON td.ma_trinh_do = nv.ma_trinh_do
+JOIN bo_phan bp ON bp.ma_bo_phan = nv.ma_bo_phan
+JOIN hop_dong hd ON hd.ma_nhan_vien = nv.ma_nhan_vien
+GROUP BY hd.ma_nhan_vien
+HAVING COUNT(hd.ma_hop_dong) <= 3
+ORDER BY hd.ma_nhan_vien;
