@@ -73,7 +73,8 @@ SELECT
     ho_ten
 FROM
     khach_hang 
-UNION SELECT 
+UNION 
+SELECT 
     ho_ten
 FROM
     khach_hang;
