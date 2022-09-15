@@ -41,10 +41,9 @@ SELECT
 FROM dich_vu_di_kem dvdk
 JOIN hop_dong_chi_tiet hdct ON dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
 GROUP BY dvdk.ma_dich_vu_di_kem
-HAVING 
-	so_luong_dich_vu_di_kem = 
-	(SELECT SUM(so_luong) FROM hop_dong_chi_tiet 
-    GROUP BY ma_dich_vu_di_kem ORDER BY SUM(so_luong) DESC LIMIT 1);
+HAVING so_luong_dich_vu_di_kem = 
+(SELECT SUM(so_luong) FROM hop_dong_chi_tiet 
+GROUP BY ma_dich_vu_di_kem ORDER BY SUM(so_luong) DESC LIMIT 1);
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm:
@@ -56,14 +55,10 @@ SELECT
     hdct.ma_dich_vu_di_kem,
     COUNT(hdct.ma_dich_vu_di_kem) AS so_lan_su_dung
 FROM hop_dong hd 
-LEFT JOIN hop_dong_chi_tiet hdct 
-	ON hdct.ma_hop_dong = hd.ma_hop_dong
-LEFT JOIN dich_vu_di_kem dvdk 
-	ON dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
-LEFT JOIN dich_vu dv 
-	ON dv.ma_dich_vu = hd.ma_dich_vu
-LEFT JOIN loai_dich_vu ldv 
-	ON ldv.ma_loai_dich_vu = dv.ma_loai_dich_vu
+LEFT JOIN hop_dong_chi_tiet hdct ON hdct.ma_hop_dong = hd.ma_hop_dong
+LEFT JOIN dich_vu_di_kem dvdk ON dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+LEFT JOIN dich_vu dv ON dv.ma_dich_vu = hd.ma_dich_vu
+LEFT JOIN loai_dich_vu ldv ON ldv.ma_loai_dich_vu = dv.ma_loai_dich_vu
 GROUP BY hdct.ma_dich_vu_di_kem
 HAVING so_lan_su_dung = 1
 ORDER BY hd.ma_hop_dong;
