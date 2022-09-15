@@ -9,11 +9,11 @@ WHERE sub.credit = (SELECT MAX(credit) FROM `subject`);
 SELECT sub.*, m.mark
 FROM `subject` sub
 JOIN mark m ON m.sub_id = sub.sub_id
-WHERE m.mark = (SELECT MAX(mark) FROM mark);
+WHERE m.mark = (SELECT MAX(m.mark));
 
 -- 3. Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
-SELECT sub.*, AVG(m.mark) AS diem_trung_binh
-FROM student sub 
-LEFT JOIN mark m ON m.student_id = sub.student_id
-GROUP BY m.student_id
+SELECT s.*,AVG(mark.mark) AS diem_trung_binh
+FROM student s
+LEFT JOIN mark ON mark.student_id = s.student_id
+GROUP BY mark.student_id
 ORDER BY diem_trung_binh DESC;
