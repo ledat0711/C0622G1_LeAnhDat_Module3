@@ -16,4 +16,4 @@ SELECT sub.*, AVG(m.mark) AS diem_trung_binh
 FROM student sub 
 LEFT JOIN mark m ON m.student_id = sub.student_id
 GROUP BY m.student_id
-ORDER BY diem_trung_binh DESC;subjectsubject
+ORDER BY diem_trung_binh DESC;
