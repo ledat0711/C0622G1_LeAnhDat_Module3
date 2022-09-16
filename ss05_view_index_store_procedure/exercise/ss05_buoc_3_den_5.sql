@@ -58,3 +58,31 @@ END //
 DELIMITER ;
 CALL insert_info_product("BP000","Ban Phim Co",10000,20,"Ban phim co brown",1);
 SELECT * FROM products;
+
+-- Tạo store procedure sửa thông tin sản phẩm theo id
+DELIMITER //
+CREATE PROCEDURE update_info_products(id_to_update INT, product_amount_new INT)
+BEGIN
+SET sql_safe_updates = 0;
+UPDATE products p
+SET product_amount = product_amount_new
+WHERE id = id_to_update;
+SET sql_safe_updates =1;
+END //
+DELIMITER ;
+CALL update_info_products(2,37);
+SELECT * FROM products;
+
+-- Xóa sản phẩm theo id:
+DELIMITER //
+CREATE PROCEDURE remove_by_id(id_to_remove INT)
+BEGIN
+SET sql_safe_updates = 0;
+DELETE FROM products
+WHERE id = id_to_remove;
+SET sql_safe_updates = 1;
+END //
+DELIMITER ;
+
+CALL remove_by_id(4);
+SELECT * FROM products;
