@@ -41,27 +41,27 @@ DROP VIEW view_products;
 
 -- Bước 5: Tạo store procedure lấy tất cả thông tin của tất cả các sản phẩm trong bảng product
 DELIMITER //
-CREATE PROCEDURE get_all_info_products()
+CREATE PROCEDURE get_all_info()
 BEGIN
 SELECT * FROM products;
 END //
 DELIMITER ;
-CALL get_all_info_products();
+CALL get_all_info();
 
 -- Tạo store procedure thêm một sản phẩm mới
 DELIMITER //
-CREATE PROCEDURE insert_info_product(product_code_insert VARCHAR (15),product_name_insert VARCHAR(30),product_price_insert double,product_amount_insert INT,product_description_insert TEXT,product_status_insert BIT)
+CREATE PROCEDURE insert_info(product_code_insert VARCHAR (15),product_name_insert VARCHAR(30),product_price_insert double,product_amount_insert INT,product_description_insert TEXT,product_status_insert BIT)
 BEGIN
 INSERT INTO products(product_code,product_name,product_price,product_amount,product_description,product_status)
 VALUES (product_code_insert,product_name_insert,product_price_insert,product_amount_insert,product_description_insert,product_status_insert);
 END //
 DELIMITER ;
-CALL insert_info_product("BP000","Ban Phim Co",10000,20,"Ban phim co brown",1);
+CALL insert_info("BP000","Ban Phim Co",10000,20,"Ban phim co brown",1);
 SELECT * FROM products;
 
 -- Tạo store procedure sửa thông tin sản phẩm theo id
 DELIMITER //
-CREATE PROCEDURE update_info_products(id_to_update INT, product_amount_new INT)
+CREATE PROCEDURE update_info(id_to_update INT, product_amount_new INT)
 BEGIN
 SET sql_safe_updates = 0;
 UPDATE products p
@@ -70,7 +70,7 @@ WHERE id = id_to_update;
 SET sql_safe_updates =1;
 END //
 DELIMITER ;
-CALL update_info_products(2,37);
+CALL update_info(2,37);
 SELECT * FROM products;
 
 -- Xóa sản phẩm theo id:
