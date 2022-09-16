@@ -34,3 +34,13 @@ WHERE
 SELECT * FROM khach_hang;
 
 -- 18.	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
+SELECT * FROM khach_hang;
+SET sql_safe_updates = 0;
+SET foreign_key_checks = 0;
+DELETE 
+FROM khach_hang 
+WHERE ma_khach_hang 
+IN (SELECT ma_khach_hang FROM hop_dong WHERE YEAR(ngay_lam_hop_dong) <2021);
+SET foreign_key_checks=1;
+SET sql_safe_updates = 1;
+SELECT * FROM khach_hang;

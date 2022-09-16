@@ -13,6 +13,7 @@ product_amount INT,
 product_description TEXT,
 product_status BIT
 );
+
 INSERT INTO products(product_code,product_name,product_price,product_amount,product_description,product_status)
 VALUES ("C001", "But Chi",3000,12,"But chi de ve",1),
 ("D002", "But Do",5000,20,"But do danh dau",1),
