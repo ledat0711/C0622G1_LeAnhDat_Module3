@@ -40,11 +40,21 @@ SELECT * FROM view_products;
 DROP VIEW view_products;
 
 -- Bước 5: Tạo store procedure lấy tất cả thông tin của tất cả các sản phẩm trong bảng product
-DELIMITER 
-//
+DELIMITER //
 CREATE PROCEDURE get_all_info_products()
 BEGIN
 SELECT * FROM products;
-END 
-//
+END //
 DELIMITER ;
+CALL get_all_info_products();
+
+-- Tạo store procedure thêm một sản phẩm mới
+DELIMITER //
+CREATE PROCEDURE insert_info_product(product_code_insert VARCHAR (15),product_name_insert VARCHAR(30),product_price_insert double,product_amount_insert INT,product_description_insert TEXT,product_status_insert BIT)
+BEGIN
+INSERT INTO products(product_code,product_name,product_price,product_amount,product_description,product_status)
+VALUES (product_code_insert,product_name_insert,product_price_insert,product_amount_insert,product_description_insert,product_status_insert);
+END //
+DELIMITER ;
+CALL insert_info_product("BP000","Ban Phim Co",10000,20,"Ban phim co brown",1);
+SELECT * FROM products;
