@@ -38,3 +38,13 @@ SELECT * FROM view_products;
 
 -- Tiến hành xoá view
 DROP VIEW view_products;
+
+-- Bước 5: Tạo store procedure lấy tất cả thông tin của tất cả các sản phẩm trong bảng product
+DELIMITER 
+//
+CREATE PROCEDURE get_all_info_products()
+BEGIN
+SELECT * FROM products;
+END 
+//
+DELIMITER ;
