@@ -10,15 +10,17 @@ SET sql_safe_updates = 1;
 
 -- 17.	Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
-UPDATE khach_hang kh
-SET kh.ma_loai_khach = 1
-WHERE kh.ma_loai_khach = 2
-AND kh.ma_khach_hang 
-	IN (SELECT 
+UPDATE khach_hang kh 
+SET 
+    kh.ma_loai_khach = 1
+WHERE
+    kh.ma_loai_khach = 2
+        AND kh.ma_khach_hang IN (SELECT 
             represent.ma_khach_hang
         FROM
             (SELECT 
-                kh.ma_khach_hang
+                kh.ma_khach_hang,
+                COALESCE(dv.chi_phi_thue + COALESCE(SUM(hdct.so_luong * dvdk.gia), 0)) AS tong_tien_thanh_toan
             FROM
                 loai_khach lk
             JOIN khach_hang kh ON lk.ma_loai_khach = kh.ma_loai_khach
@@ -35,13 +37,21 @@ SELECT * FROM khach_hang;
 -- 18.	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
 SET sql_safe_updates = 0;
 SET foreign_key_checks = 0;
-DELETE 
-FROM khach_hang 
-WHERE ma_khach_hang 
-IN (SELECT ma_khach_hang FROM hop_dong WHERE YEAR(ngay_lam_hop_dong) < 2021);
+DELETE FROM khach_hang 
+WHERE
+    ma_khach_hang IN (SELECT 
+        ma_khach_hang
+    FROM
+        hop_dong
+    
+    WHERE
+        YEAR(ngay_lam_hop_dong) < 2021);
 SET foreign_key_checks=1;
 SET sql_safe_updates = 1;
-SELECT * FROM khach_hang;
+SELECT 
+    *
+FROM
+    khach_hang;
 
 -- 19. Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
 SET sql_safe_updates = 0;
@@ -66,19 +76,32 @@ SET sql_safe_updates = 1;
 -- 20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, thông tin hiển thị bao gồm 
 -- id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
 SELECT 
-nv.ma_nhan_vien AS id,
-nv.ho_ten,
-nv.email,
-nv.so_dien_thoai,
-nv.ngay_sinh,
-nv.dia_chi
-FROM nhan_vien nv
-UNION
-SELECT
-kh.ma_khach_hang AS id,
-kh.ho_ten,
-kh.email,
-kh.so_dien_thoai,
-kh.ngay_sinh,
-kh.dia_chi
-FROM khach_hang kh;
+    nv.ma_nhan_vien AS id,
+    nv.ho_ten,
+    nv.email,
+    nv.so_dien_thoai,
+    nv.ngay_sinh,
+    nv.dia_chi
+FROM
+    nhan_vien nv 
+UNION SELECT 
+    kh.ma_khach_hang AS id,
+    kh.ho_ten,
+    kh.email,
+    kh.so_dien_thoai,
+    kh.ngay_sinh,
+    kh.dia_chi
+FROM
+    khach_hang kh;
+
+-- 21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
+-- và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”. 
+-- "2021-04-25"?
+CREATE VIEW v_nhan_vien AS
+SELECT nv.* FROM nhan_vien nv
+JOIN hop_dong hd ON hd.ma_nhan_vien = nv.ma_nhan_vien 
+WHERE nv.dia_chi REGEXP '^.*(Yên Bái).*$' AND ngay_lam_hop_dong IN ('2021-04-25','2019-12-12');
+SELECT 
+    *
+FROM
+    v_nhan_vien;

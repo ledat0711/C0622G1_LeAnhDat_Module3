@@ -43,7 +43,8 @@ FROM
         JOIN
     hop_dong hd ON hd.ma_dich_vu = dv.ma_dich_vu
 WHERE
-   YEAR(ngay_lam_hop_dong) = 2020 AND ten_dich_vu NOT IN (SELECT 
+    YEAR(ngay_lam_hop_dong) = 2020
+        AND ten_dich_vu NOT IN (SELECT 
             ten_dich_vu
         FROM
             dich_vu dv
@@ -73,8 +74,7 @@ SELECT
     ho_ten
 FROM
     khach_hang 
-UNION 
-SELECT 
+UNION SELECT 
     ho_ten
 FROM
     khach_hang;
@@ -99,7 +99,7 @@ SELECT
     hd.ngay_lam_hop_dong,
     hd.ngay_ket_thuc,
     hd.tien_dat_coc,
-    COALESCE(SUM(so_luong),0) AS so_luong_dich_vu_di_kem
+    COALESCE(SUM(so_luong), 0) AS so_luong_dich_vu_di_kem
 FROM
     hop_dong hd
         LEFT JOIN
