@@ -38,7 +38,47 @@ SET foreign_key_checks = 0;
 DELETE 
 FROM khach_hang 
 WHERE ma_khach_hang 
-IN (SELECT ma_khach_hang FROM hop_dong WHERE YEAR(ngay_lam_hop_dong) <2021);
+IN (SELECT ma_khach_hang FROM hop_dong WHERE YEAR(ngay_lam_hop_dong) < 2021);
 SET foreign_key_checks=1;
 SET sql_safe_updates = 1;
 SELECT * FROM khach_hang;
+
+-- 19. Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
+SET sql_safe_updates = 0;
+UPDATE dich_vu_di_kem 
+SET 
+    gia = gia * 2
+WHERE
+    ma_dich_vu_di_kem IN (SELECT 
+            dai_dien.ma_dich_vu_di_kem
+        FROM
+            (SELECT 
+                hdct.ma_dich_vu_di_kem, SUM(hdct.so_luong) AS tong_so_lan_su_dung
+            FROM
+                hop_dong_chi_tiet hdct
+            JOIN hop_dong hd ON hd.ma_hop_dong = hdct.ma_hop_dong
+            WHERE
+                    YEAR(hd.ngay_lam_hop_dong) = 2020
+            GROUP BY hdct.ma_dich_vu_di_kem
+            HAVING tong_so_lan_su_dung > 10 ) AS dai_dien);
+SET sql_safe_updates = 1;
+
+-- 20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, thông tin hiển thị bao gồm 
+-- id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
+SELECT 
+nv.ma_nhan_vien AS id,
+nv.ho_ten,
+nv.email,
+nv.so_dien_thoai,
+nv.ngay_sinh,
+nv.dia_chi
+FROM nhan_vien nv
+UNION
+SELECT
+kh.ma_khach_hang AS id,
+kh.ho_ten,
+kh.email,
+kh.so_dien_thoai,
+kh.ngay_sinh,
+kh.dia_chi
+FROM khach_hang kh;
