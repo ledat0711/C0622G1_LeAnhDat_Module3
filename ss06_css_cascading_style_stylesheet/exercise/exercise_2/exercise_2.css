@@ -1,0 +1,10 @@
+p {
+    text-align: justify;
+    width: 900px;
+    font-family: Tahoma, serif ;
+    text-indent: 30px;
+}
+
+.set_blue{
+    color: blue;
+}
