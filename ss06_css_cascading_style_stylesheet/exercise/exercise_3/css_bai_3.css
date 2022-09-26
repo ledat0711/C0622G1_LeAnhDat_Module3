@@ -1,9 +1,33 @@
+* {
+    text-align: center;
+}
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+h1 {
+    margin: 0;
+}
+h2 {
+    margin: 0;
+}
+header {
+    border: solid; color: #ff333a;
+    background-color: #000793;
+    height: fit-content;
+    padding: 27px;
+    text-align: center;
+}
 .blink-bg{
     color: #fff;
     padding: 10px;
     display: inline-block;
     border-radius: 5px;
     animation: blinkingBackground 2s infinite;
+}
+section {
+    width: 1200px;
+    display: flex;
 }
 @keyframes blinkingBackground{
     0%		{ background-color: #10c018;}

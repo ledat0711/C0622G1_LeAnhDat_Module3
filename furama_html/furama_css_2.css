@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 980px;
+    margin: 0 auto;
+}
+nav .menu ul{
+    justify-items: flex-end;
+    list-style: none;
+}
+
+nav .menu ul li{
+    /*float: left;*/
+    line-height: 35px;
+    padding: 0 15px;
+    display: inline-block;
+}
+
+nav .menu ul li a{
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav .search{
+    font-size: 15px;
+    justify-items: flex-end;
+    float: right;
+    margin-right: 25px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-color: #AAC4FF;
+    height: fit-content;
+    padding: 27px;
+    text-align: center;
+    display: flex;
+}
+header > div:nth-child(2) {
+    margin-left: auto;
+}
+.owner {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Times New Roman", serif;
+    padding-top: 30px;
+    padding-right: 20px;
+    text-align: center;
+}
+/* Create two columns/boxes that floats next to each other */
+nav {
+    /*float: left;*/
+    /*width: 30%;*/
+    /*height: 300px; !* only for demonstration, should be removed *!*/
+    background: #ccc;
+    padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+    display: flex;
+    align-items: center;
+
+    list-style-type: none;
+    padding: 0;
+}
+nav ul li:last-child{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+nav ul li:last-child button{
+    margin-left: 12px;
+}
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #f1f1f1;
+    height: 300px; /* only for demonstration, should be removed */
+}
+
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}

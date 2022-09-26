@@ -113,8 +113,23 @@ SELECT * FROM v_nhan_vien;
 -- 22. Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” 
 -- đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
 SET sql_safe_updates = 0;
-UPDATE v_nhan_vien nv
+UPDATE v_nhan_vien
 SET 
-    nv.dia_chi = 'Liên Chiểu';
+    dia_chi = 'Liên Chiểu';
 SET sql_safe_updates = 1;
 select * from nhan_vien;
+-- 23. Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó 
+-- với ma_khach_hang được truyền vào như là 1 tham số của sp_xoa_khach_hang.
+DROP procedure if exists remove_customer_by_customer_code;
+DELIMITER //
+CREATE PROCEDURE remove_customer_by_customer_code(customer_code_to_remove INT)
+BEGIN
+SET sql_safe_updates = 0;
+DELETE
+FROM khach_hang
+WHERE ma_khach_hang = customer_code_to_remove;
+SET sql_safe_updates = 1;
+END //
+DELIMITER ;
+SELECT * FROM khach_hang;
+CALL remove_customer_by_customer_code(9);
