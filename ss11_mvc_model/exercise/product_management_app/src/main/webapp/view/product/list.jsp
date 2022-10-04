@@ -5,11 +5,13 @@
   Time: 2:51 CH
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Product List</title>
+    <style></style>
 </head>
 <body>
 <h1>Products</h1>
@@ -31,8 +33,8 @@
             <td>${product.getPrice()}</td>
             <td>${product.getDescription()}</td>
             <td>${product.getProducer()}</td>
-            <td><a href="/products?action=edit&id=${product.getId()}">edit</a></td>
-            <td><a href="/products?action=delete&id=${product.getId()}">delete</a></td>
+            <td><a href="/products?action=edit&id=${product.getId()}">Edit</a></td>
+            <td><a href="/products?action=delete&id=${product.getId()}">Delete</a></td>
         </tr>
     </c:forEach>
 
