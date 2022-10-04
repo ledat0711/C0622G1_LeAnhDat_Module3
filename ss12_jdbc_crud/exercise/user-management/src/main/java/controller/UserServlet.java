@@ -15,8 +15,6 @@ public class UserServlet extends HttpServlet {
     private IUserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -54,8 +52,6 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -99,8 +95,8 @@ public class UserServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+    }
     private void searchUser(HttpServletRequest request, HttpServletResponse response) {
         String country = request.getParameter("country");
         List<User>userList=userService.seachByCountry(country);
