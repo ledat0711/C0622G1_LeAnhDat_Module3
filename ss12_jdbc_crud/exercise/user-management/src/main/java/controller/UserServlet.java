@@ -13,6 +13,7 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns ={"","/User"})
 public class UserServlet extends HttpServlet {
     private IUserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
