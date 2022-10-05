@@ -82,8 +82,8 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-//        List<User> listUser = userService.selectAllUsers();
-        List<User> listUser = userService.getAllUser();
+        List<User> listUser = userService.selectAllUsers();
+//        List<User> listUser = userService.getAllUser();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
