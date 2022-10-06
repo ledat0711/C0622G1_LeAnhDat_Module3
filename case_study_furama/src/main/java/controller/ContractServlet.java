@@ -7,22 +7,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ContractServlet", value = "/Contract")
+@WebServlet(name = "ContractServlet", value = "/contract")
 public class ContractServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action==null){
+        if (action == null) {
             action = "";
         }
         switch (action){
+            case "create":
+                showCreateContract(request,response);
+                break;
             default:
-                showListContract(request,response);
+                listContract(request,response);
+                break;
         }
     }
 
-    private void showListContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/contract/list.jsp").forward(request,response);
+    private void listContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("contract/contract.jsp").forward(request,response);
+    }
+
+    private void showCreateContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("contract/contract.jsp").forward(request,response);
     }
 
     @Override
