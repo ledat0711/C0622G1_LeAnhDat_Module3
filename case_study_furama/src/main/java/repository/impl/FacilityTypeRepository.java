@@ -1,6 +1,7 @@
 package repository.impl;
 
 import connection.DBConnect;
+import model.Facility;
 import model.FacilityType;
 import repository.IFacilityTypeRepository;
 

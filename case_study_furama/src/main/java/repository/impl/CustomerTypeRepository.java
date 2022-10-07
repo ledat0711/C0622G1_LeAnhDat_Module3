@@ -3,7 +3,6 @@ package repository.impl;
 import connection.DBConnect;
 import model.CustomerType;
 import repository.ICustomerTypeRepository;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

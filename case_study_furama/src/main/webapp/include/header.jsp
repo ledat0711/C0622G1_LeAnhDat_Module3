@@ -15,7 +15,7 @@
 <body>
 <div class="row w-100">
     <div class="col-lg-3">
-        <a href="../index.jsp">
+        <a href="index.jsp">
         <img style="width: 120px"
              src="https://cdn.nhanlucnganhluat.vn/uploads/images/051D288B/logo/2018-12/Logo-FURAMA-RESORT.jpg">
         </a>
@@ -30,7 +30,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../index.jsp">Home</a>
+        <a class="navbar-brand" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
