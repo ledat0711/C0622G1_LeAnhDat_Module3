@@ -23,14 +23,14 @@
     <div class="col-lg-5"></div>
     <div class="col-lg-4 d-flex text-center justify-content-center align-items-center">
         <div>
-            <div class="row"><b>Lê Anh Đạt</b></div>
-            <div class="row"><b>C0622G1</b></div>
+            <div class="row"><b style="font-size: 25px; font-family: 'Times New Roman',sans-serif;">Lê Anh Đạt</b></div>
+            <div class="row"><b style="font-size: 25px; font-family: 'Times New Roman',sans-serif;">C0622G1</b></div>
         </div>
     </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="/index.jsp">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
